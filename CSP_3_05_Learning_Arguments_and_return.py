@@ -1,93 +1,78 @@
 #Below you will find several older homework questions done correctly using input
 #and print statements. our task is to take each one and convert it to arguments and returns instead.
 
-def larger():
-   
-    n1_input = input("Please enter the first number")
-    n2_input = input("Please enter the second number")
-
-    n1 = int(n1_input)
-    n2 = int(n2_input)
-
+def larger(n1, n2):
+    """Return the larger of two numbers."""
     if n1 > n2:
-        print(f"The larger number is: {n1}")
+        return n1
     else:
-        print(f"The larger number is: {n2}")
+        return n2
 
 
-
-def grade():
-    score = int(input("Give me your score"))
-
+def grade(score):
+    """Return the letter grade for a numeric score."""
     if score >= 90:
-        print("A")
+        return "A"
     elif score >= 80:
-        print("B")
+        return "B"
     elif score >= 70:
-        print("C")
+        return "C"
     elif score >= 60:
-        print("D")
+        return "D"
     else:
-        print("F")
+        return "F"
 
-grade()
-
-def fizzBuzz():
-    n = input("Give me a number: ")
-    n = int(n)
-    if (n % 5 == 0 and n % 3 == 0):
-        print("FizzBuzz")
-    elif (n % 3 == 0):
-        print("fizz")
-    elif (n % 5 == 0):
-        print("buzz")
+def fizzBuzz(n):
+    """
+    Return the FizzBuzz result for n.
+    Usually:
+    - "FizzBuzz" if divisible by 3 and 5
+    - "Fizz" if divisible by 3 only
+    - "Buzz" if divisible by 5 only
+    - the number (or its string) otherwise
+    """
+    if n % 3 == 0 and n % 5 == 0:
+        return "FizzBuzz"
+    elif n % 3 == 0:
+        return "Fizz"
+    elif n % 5 == 0:
+        return "Buzz"
     else:
-        print(n)
+        return n 
 
-def collatz():
+
+def collatz(n):
     """
-    This function takes an integer input from the user.
-    If the number is even, it divides it by two.
-    If the number is odd, it multiplies it by 3 and adds 1.
-    The new number is then printed.
+    Given an integer n:
+    - if n is even, return n // 2
+    - if n is odd, return 3 * n + 1
     """
-    try:
-        n_str = input("Give me a number: ")
-        n = int(n_str)
-        
-        if n % 2 == 0:
-            new_number = n / 2
-        else:
-            new_number = 3 * n + 1
-        
-        print(new_number)
-        
-    except ValueError:
-        print("Invalid input. Please enter an integer.")
+    if n % 2 == 0:
+        return n // 2
+    else:
+        return 3 * n + 1
 
 
-
-def convertTemperature():
-    user_input = input("Give me a temperature (e.g., 32F or 20C): ")
-
+def convertTemperature(user_input):
+    """
+    user_input: a string like '32F' or '20C'
+    Returns the converted temperature as a float.
+    """
     if not user_input:
-        print("No input provided. Please enter a temperature.")
-        return
+        return None  # or raise an error
 
     unit = user_input[-1].upper()
+    value_str = user_input[:-1]
     try:
-        temperature_value = float(user_input[:-1])
+        temperature_value = float(value_str)
     except ValueError:
-        print("Invalid temperature value. Please enter a number followed by 'F' or 'C'.")
-        return
+        return None  # or raise an error
 
     if unit == "C":
-        fahrenheit = (temperature_value * 9/5) + 32
-        print(f"{int(temperature_value)}C -> {int(fahrenheit)}F")
+        # return Fahrenheit
+        return (temperature_value * 9/5) + 32
     elif unit == "F":
-        celsius = (temperature_value - 32) * 5/9
-        print(f"{int(temperature_value)}F -> {int(celsius)}C")
+        # return Celsius
+        return (temperature_value - 32) * 5/9
     else:
-        print("Invalid unit. Please use 'F' for Fahrenheit or 'C' for Celsius.")
-
-convertTemperature()
+        return None
