@@ -8,7 +8,6 @@ def larger(n1, n2):
     else:
         return n2
 
-
 def grade(score):
     """Return the letter grade for a numeric score."""
     if score >= 90:
@@ -22,33 +21,37 @@ def grade(score):
     else:
         return "F"
 
+
 def fizzBuzz(n):
     """
     Return the FizzBuzz result for n.
-    Usually:
+
     - "FizzBuzz" if divisible by 3 and 5
-    - "Fizz" if divisible by 3 only
-    - "Buzz" if divisible by 5 only
-    - the number (or its string) otherwise
+    - "fizz" if divisible by 3 only
+    - "buzz" if divisible by 5 only
+    - n itself otherwise
     """
     if n % 3 == 0 and n % 5 == 0:
         return "FizzBuzz"
     elif n % 3 == 0:
-        return "Fizz"
+        return "fizz"
     elif n % 5 == 0:
-        return "Buzz"
+        return "buzz"
     else:
-        return n 
+        return n
 
 
 def collatz(n):
     """
     Given an integer n:
-    - if n is even, return n // 2
+    - if n is 1, return 1
+    - if n is even, return n / 2   (float)
     - if n is odd, return 3 * n + 1
     """
-    if n % 2 == 0:
-        return n // 2
+    if n == 1:
+        return 1
+    elif n % 2 == 0:
+        return n / 2
     else:
         return 3 * n + 1
 
@@ -56,23 +59,16 @@ def collatz(n):
 def convertTemperature(user_input):
     """
     user_input: a string like '32F' or '20C'
-    Returns the converted temperature as a float.
+    Returns a string like '0C' or '68F', using integer truncation.
     """
-    if not user_input:
-        return None  # or raise an error
-
     unit = user_input[-1].upper()
-    value_str = user_input[:-1]
-    try:
-        temperature_value = float(value_str)
-    except ValueError:
-        return None  # or raise an error
+    value = int(user_input[:-1])
 
-    if unit == "C":
-        # return Fahrenheit
-        return (temperature_value * 9/5) + 32
-    elif unit == "F":
-        # return Celsius
-        return (temperature_value - 32) * 5/9
+    if unit == "F":
+        celsius = int((value - 32) * 5 / 9)
+        return f"{celsius}C"
+    elif unit == "C":
+        fahrenheit = int((value * 9 / 5) + 32)
+        return f"{fahrenheit}F"
     else:
         return None
